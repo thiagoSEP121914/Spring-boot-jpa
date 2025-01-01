@@ -1,14 +1,8 @@
 package com.projeto_java.curso_spring.config;
 
-import com.projeto_java.curso_spring.entities.Category;
-import com.projeto_java.curso_spring.entities.Order;
-import com.projeto_java.curso_spring.entities.Product;
-import com.projeto_java.curso_spring.entities.User;
+import com.projeto_java.curso_spring.entities.*;
 import com.projeto_java.curso_spring.entities.enums.OrderStatus;
-import com.projeto_java.curso_spring.repositories.CategoryRepository;
-import com.projeto_java.curso_spring.repositories.OrderRepository;
-import com.projeto_java.curso_spring.repositories.ProductRepository;
-import com.projeto_java.curso_spring.repositories.UserRepository;
+import com.projeto_java.curso_spring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +27,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -63,10 +60,15 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT ,u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT ,u1);
 
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi3 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi4 = new OrderItem(o1, p1, 2, p1.getPrice());
+
         userRepository.saveAll(list);
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
         categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 }

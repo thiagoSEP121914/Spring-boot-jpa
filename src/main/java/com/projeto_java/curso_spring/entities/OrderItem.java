@@ -14,7 +14,7 @@ import java.util.Objects;
 public class OrderItem implements Serializable {
 
     @EmbeddedId
-    private OrdeItemPk id;
+    private OrdeItemPk id = new OrdeItemPk();
     private Integer quantity;
     private Double price;
 
