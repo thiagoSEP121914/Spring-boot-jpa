@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-
 public class OrdeItemPk implements Serializable {
 
     @ManyToOne
@@ -50,6 +49,4 @@ public class OrdeItemPk implements Serializable {
     public int hashCode() {
         return Objects.hash(order, product);
     }
-
-
 }
